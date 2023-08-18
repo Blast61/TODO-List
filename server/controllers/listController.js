@@ -32,6 +32,23 @@ itemController.postItems = async (req, res, next) => {
   }
 };
 
+itemController.updateItems = async (req, res, next) => {
+  //break down the request
+  const { id } = req.params;
+  const { newItem } = req.body;
+  try {
+    //findOneandUpdate
+    const updatedItem = await Item.findOneAndUpdate({ _id: id }, newItem, {
+      new: true,
+    });
+    console.log(updatedItem, newItem);
+    res.locals.newItem = updatedItem;
+    return next();
+  } catch (err) {
+    return next(err);
+  }
+};
+
 itemController.delItems = async (req, res, next) => {
   //break down the id
   const { id } = req.params;
