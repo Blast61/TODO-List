@@ -17,6 +17,7 @@ app.use(express.static('views'));
 
 //routes
 app.get('/item', itemController.getItems, (req, res) => {
+  console.log('Back in the server');
   return res.status(200).json(res.locals.allItems);
 });
 app.post('/item', itemController.postItems, (req, res) => {
