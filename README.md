@@ -28,11 +28,10 @@ You should be able to Create,delete and update each item on your list.
 
     These should be set as cookies upon creating Item.
 
-    T
 # notes
 
-Dont worry about styling for this application. The folder setup is odd but this is the way Codesmith has it and I think that how we should practice it.
-Try to complete this with in 4 hours If not complete thats ok I wanted this to be harder than the last test so we could be properly prepared
+Dont worry about styling for this application. I moved it over from the old version of this application but it may or may not work as expected. The folder setup is odd but this is the way Codesmith has it and I think that how we should practice it.
+Try to complete this with in 4 hours If not complete thats ok I wanted this to be harder than the last test so we could be properly prepared. Do your best not to refrence your notes. I'd like to do a code review at the end of the day.To make sure we all feel good about the retake.
 
 
 

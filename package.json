@@ -1,0 +1,17 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "The Purpose of this Application is to set up an application that looks similiar to the one below.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "start-dev": "nodemon server/server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.47.0",
+    "nodemon": "^3.0.1"
+  }
+}
