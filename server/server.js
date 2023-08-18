@@ -26,7 +26,7 @@ app.post('/item', itemController.postItems, (req, res) => {
 });
 app.patch('/item/:id', itemController.updateItems, (req, res) => {
   console.log('Back in the server');
-  return res.status(200).json(itemController.updateItems);
+  return res.status(200).json(res.locals.newItem);
 });
 app.delete('/item/:id', itemController.delItems, (req, res) => {
   return res.status(204).json(res.locals.removed);
