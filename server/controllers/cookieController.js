@@ -8,25 +8,24 @@ cookieController.setCookie = async (req, res, next) => {
     res.cookie('pass', password);
     return next();
   } catch (err) {
-    return next(err);
+    return next({ log: 'Failed to set Cookie' });
   }
 };
 
 cookieController.checkCookie = async (req, res, next) => {
   const { id } = req.params;
   const storedPass = req.cookies.pass;
-  const { password, listItem } = req.body;
+  console.log(storedPass, 'storedPass');
   try {
-    console.log('password', password);
     console.log('Checking Cookies');
-    if (storedPass !== password) {
-      return next(err);
-    }
-    const storedItem = await Item.findOne({ listItem, password });
-    res.cookie('pass', storedItem.password);
+    const storedItem = await Item.findOne({ _id: id });
+    res.cookie('pass', storedItem._id);
     return next();
   } catch (err) {
-    return next(err);
+    return next({
+      log: 'Authentication failed check backend server logs',
+      status: 401,
+    });
   }
 };
 

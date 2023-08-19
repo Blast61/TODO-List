@@ -46,6 +46,7 @@ async function getItems() {
           const delRequest = await fetch(`/item/${itemID}`, {
             method: 'DELETE',
           });
+
           li.remove();
         } catch (err) {
           return `Unable to delete item logging ${err}`;
@@ -87,12 +88,6 @@ async function newItem() {
     addBtn.addEventListener('click', async () => {
       console.log('clicked');
       try {
-        // if (!item || !pass) {
-        //   console.log(item, pass);
-        //   console.log('Fill in Required Fields');
-        //   return;
-        // }
-        //await a fetch request
         const newItems = await fetch('/item', {
           method: 'POST',
           body: JSON.stringify({

@@ -12,7 +12,7 @@ itemController.getItems = async (req, res, next) => {
     //return next
     return next();
   } catch (err) {
-    return next(err);
+    return next({ log: 'Unable to retrieve items check server logs' });
   }
 };
 
@@ -29,7 +29,7 @@ itemController.postItems = async (req, res, next) => {
     res.locals.newItems = newItems;
     return next();
   } catch (err) {
-    return next(err);
+    return next({ log: 'Unable to post new items check server logs' });
   }
 };
 
@@ -53,7 +53,7 @@ itemController.updateItems = async (req, res, next) => {
     res.locals.newItem = updatedItem;
     return next();
   } catch (err) {
-    return next(err);
+    return next({ log: 'Unable to update item list check server logs' });
   }
 };
 
@@ -64,11 +64,11 @@ itemController.delItems = async (req, res, next) => {
   //deconstruct the storedPassword from the cookies
   const { pass: storedPass } = req.cookies;
   //deconstruct the password from the body
-  const { password } = req.body;
+  console.log(req.cookies.pass);
   try {
-    if (storedPass !== password) {
-      return res.status(401).json({ error: 'Authentication failed' });
-    }
+    // if (storedPass !== ) {
+    //   return next(err);
+    // }
     //find one and delete but stored in a variable and await
     const removed = await Item.findOneAndDelete({ _id: id });
     //check if there was anything to remove in the first place
@@ -81,7 +81,7 @@ itemController.delItems = async (req, res, next) => {
     }
     return next();
   } catch (err) {
-    return next();
+    return next({ log: 'Unable to delete items check server logs' });
   }
 };
 
