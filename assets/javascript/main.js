@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   //2. Change the script tagging the index.js to javascript/main.js gotta match file names
   console.log('DOM FIRED UP!');
   getItems();
-  newMsg();
+  newItem();
 });
 
 async function getItems() {
@@ -17,7 +17,6 @@ async function getItems() {
     //await a fetch request
     const allItems = await fetch('/item');
     //json parse it
-    console.log(allItems);
     const responses = await allItems.json();
     responses.forEach((item) => {
       //create your list items here
@@ -46,9 +45,7 @@ async function getItems() {
           //on every delete click send a fetch request to the back end
           const delRequest = await fetch(`/item/${itemID}`, {
             method: 'DELETE',
-            headers: { 'Content-Type': 'application/json' },
           });
-          const res = await delRequest.json();
           li.remove();
         } catch (err) {
           return `Unable to delete item logging ${err}`;
@@ -59,7 +56,7 @@ async function getItems() {
           const itemId = item._id;
           const editReq = await fetch(`/item/${itemId}`, {
             method: 'PATCH',
-            headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               listItem: itemText.value,
             }),
@@ -79,7 +76,7 @@ async function getItems() {
   }
 }
 
-async function newMsg() {
+async function newItem() {
   try {
     const itemList = document.getElementById('item-list');
     const itemText = document.getElementById('desc');
@@ -90,11 +87,11 @@ async function newMsg() {
     addBtn.addEventListener('click', async () => {
       console.log('clicked');
       try {
-        //   if (!item || !pass) {
-        //     console.log(item, pass);
-        //     console.log('Fill in Required Fields');
-        //     return;
-        //   }
+        // if (!item || !pass) {
+        //   console.log(item, pass);
+        //   console.log('Fill in Required Fields');
+        //   return;
+        // }
         //await a fetch request
         const newItems = await fetch('/item', {
           method: 'POST',

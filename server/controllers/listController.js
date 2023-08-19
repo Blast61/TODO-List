@@ -58,13 +58,27 @@ itemController.updateItems = async (req, res, next) => {
 };
 
 itemController.delItems = async (req, res, next) => {
+  console.log('In Del Items Controller');
   //break down the id
   const { id } = req.params;
+  //deconstruct the storedPassword from the cookies
+  const { pass: storedPass } = req.cookies;
+  //deconstruct the password from the body
+  const { password } = req.body;
   try {
+    if (storedPass !== password) {
+      return res.status(401).json({ error: 'Authentication failed' });
+    }
     //find one and delete but stored in a variable and await
     const removed = await Item.findOneAndDelete({ _id: id });
-    //send a message back to the server on the locals
-    res.locals.removed = 'Successfully deleted item';
+    //check if there was anything to remove in the first place
+    if (removed === null) {
+      console.log('nothing to delete');
+    } else {
+      console.log(
+        `The following item has been removed successfully matching the id of ${id} and reads as follows ${removed}`
+      );
+    }
     return next();
   } catch (err) {
     return next();
